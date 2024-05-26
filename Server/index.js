@@ -38,7 +38,7 @@ const T = new Twit({
 });
 
 // Route to handle video URL submissions
-app.post('/download', async (req, res) => {
+app.post('/api/download', async (req, res) => {
     const { url, platform } = req.body;
 
     try {
