@@ -113,9 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
         case 'instagram-reels.html':
             handleVideoConversion('/api/instagram/reels');
             break;
-        case 'facebook.html':
-            handleVideoConversion('/api/facebook');
-            break;
+        
         case 'twitter.html':
             handleVideoConversion('/api/twitter');
             break;
