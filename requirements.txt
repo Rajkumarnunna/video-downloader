@@ -1,4 +1,6 @@
-flask==3.0.1
-requests
-werkzeug==2.3.7
-yt-dlp
+Flask==1.1.2
+pytube==11.0.0
+instaloader==4.8.1
+lxml==4.6.3
+requests==2.25.1
+twitter-scraper==1.0.2

@@ -4,6 +4,11 @@ import os
 import yt_dlp
 import instaloader
 import twitter_scraper as tws
+import logging
+
+# Setup logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 def download_video(url, platform):
     try:
@@ -36,7 +41,6 @@ def download_video(url, platform):
             loader = instaloader.Instaloader()
             loader.download_reels(url, post_filter=lambda post: post.is_video, target='.')
             return 'downloaded_reel.mp4'  # Assuming the filename is fixed
-        
         elif platform == 'twitter':
             # Use twitter_scraper to download Twitter content
             tweet_id = url.split('/')[-1]
@@ -58,5 +62,5 @@ def download_video(url, platform):
         else:
             return None
     except Exception as e:
-        print(f"Error downloading video: {e}")
+        logger.error(f"Error downloading video: {e}")
         return None
