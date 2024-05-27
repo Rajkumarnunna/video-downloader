@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <title>Home - Video Downloader by Pavi</title>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+        h1, h2, h3 {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 700;
+        }
+        .double-column {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .underline-links a {
+            text-decoration: underline;
+        }
+        .testimonial {
+            background-color: #fff;
+            color: #333;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .testimonial h3 {
+            color: #555;
+        }
+        .testimonial p {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-r from-indigo-900 to-purple-500 text-gray-100">
+    <nav class="p-4 shadow-lg bg-indigo-800">
+        <div class="container mx-auto flex items-center justify-between">
+            <a href="index.html" class="flex items-center">
+                <img src="https://picsum.photos/32/32" alt="Brand Logo" class="mr-3 h-6 sm:h-9 rounded-full">
+                <span class="text-2xl font-bold">Video Downloader</span>
+            </a>
+            <button data-collapse-toggle="mobile-menu" class="inline-flex items-center p-2 ml-3 text-sm rounded-lg md:hidden focus:outline-none focus:ring-2 focus:ring-gray-200" aria-expanded="false" aria-controls="mobile-menu">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-6 h-6 text-gray-100" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+            <div class="hidden w-full md:block md:w-auto" id="mobile-menu">
+                <ul class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
+                    <li><a href="index.html" class="block py-2 pr-4 pl-3 rounded md:bg-transparent md:p-0 text-gray-100" aria-current="page">Home</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 mt-8 text-center">
+        <h1 class="text-5xl font-extrabold mb-6">Welcome to Video Downloader by Pavi</h1>
+        <p class="mb-8 text-lg text-gray-200">The ultimate tool to download videos and images from your favorite platforms with ease and speed.</p>
+        <ul class="double-column text-gray-100 text-lg underline-links">
+            <li><a href="youtube-to-mp3.html" class="hover:text-gray-300">YouTube to mp3</a></li>
+            <li><a href="YouTube-to-MP4.html" class="hover:text-gray-300">YouTube MP4</a></li>
+            <li><a href="instagram.html" class="hover:text-gray-300">Instagram</a></li>
+            <li><a href="instagram-reels.html" class="hover:text-gray-300">Instagram Reels</a></li>
+    
+            <li><a href="twitter.html" class="hover:text-gray-300">Twitter</a></li>
+            <li><a href="faq.html" class="hover:text-gray-300">FAQ</a></li>
+        </ul>
+    </div>
+
+    <div class="container mx-auto px-4 mt-16 text-center">
+        <h2 class="text-4xl font-bold mb-6">Testimonials</h2>
+        <div class="testimonial">
+            <h3>From a YouTube user:</h3>
+            <p>"Downloading videos from YouTube was never this easy! Video Downloader by Pavi helped me save my favorite tutorials for offline viewing. Highly recommended!"</p>
+            <cite>- Samuel M, YouTube enthusiast</cite>
+        </div>
+        <div class="testimonial">
+            <h3>From an Instagram user:</h3>
+            <p>"I love how simple and fast it is to save Instagram posts using Video Downloader by Pavi. Now I can keep all my favorite memories saved on my phone hassle-free!"</p>
+            <cite>- Praveen, Instagram addict</cite>
+        </div>
+    
+        
+        <div class="testimonial">
+            <h3>From a Twitter user:</h3>
+            <p>"As a Twitter user, I always wanted to save those hilarious videos and GIFs I come across. Video Downloader by Pavi made it possible! Now I can laugh at them anytime, anywhere."</p>
+            <cite>- Prasad, Twitter enthusiast</cite>
+        </div>
+    
+
+    <footer class="mt-16 bg-indigo-800 text-gray-100 py-6">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <span>© All rights reserved.</span>
+            <a href="privacy.html" class="hover:text-gray-300">Privacy Policy</a>
+                <a href="terms.html" class="hover:text-gray-300">Terms of Service</a>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <script src="/static/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <title>YouTube to MP4 - Video Downloader by Pavi</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        h1, h2, h3 {
+            font-family: 'Raleway', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-r from-indigo-900 to-purple-500 text-gray-100">
+    <nav class="p-4 shadow-lg bg-indigo-800">
+        <div class="container mx-auto flex items-center justify-between">
+            <a href="index.html" class="flex items-center">
+                <img src="https://picsum.photos/32/32" alt="Brand Logo" class="mr-3 h-6 sm:h-9 rounded-full">
+                <h1 class="text-2xl font-bold">Video downloader</h1>
+            </a>
+            <button data-collapse-toggle="mobile-menu" class="inline-flex items-center p-2 ml-3 text-sm rounded-lg md:hidden focus:outline-none focus:ring-2 focus:ring-gray-200">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-6 h-6 text-gray-100" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+            <div class="hidden w-full md:block md:w-auto" id="mobile-menu">
+                <ul class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
+                    <li>
+                        <a href="index.html" class="block py-2 pr-4 pl-3 rounded md:bg-transparent md:p-0 text-gray-100">Home</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 mt-8 text-center">
+        <h1 class="text-4xl font-extrabold mb-4">Twitter</h1>
+        <p class="mb-8 text-lg text-gray-200">Content specific to Twitter goes here.</p>
+        <form id="downloadForm" action="/download" method="post" class="max-w-lg mx-auto">
+            <input type="url" name="video_url" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4" id="video_url" placeholder="Enter video URL" required="">
+            <button type="submit" class="bg-indigo-600 hover:bg-indigo-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Download</button>
+        </form>
+    </div>
+
+    <footer class="fixed bottom-0 left-0 right-0 z-20 w-full bg-indigo-800 text-gray-100 shadow-lg overflow-hidden transition-all ease-out duration-500" style="height: 60px;">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <span>© All rights reserved.</span>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <script src="/static/js/script.js"></script>
+    <script src="script.js"></script>
+    <script>
+        handleVideoConversion('/api/twitter');
+    </script>
+</body>
+</html>
