@@ -5,12 +5,16 @@ const mysql = require('mysql2');
 const instaDl = require('insta-dl');
 const fbdl = require('fbdl-core');
 const Twit = require('twit');
+const path = require('path');
+const fs = require('fs');
+const fetch = require('node-fetch');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware to parse JSON bodies
+// Middleware to parse JSON bodies and URL-encoded bodies
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // MySQL database connection
 const connection = mysql.createConnection({
@@ -37,8 +41,16 @@ const T = new Twit({
     access_token_secret: 'YOUR_TWITTER_ACCESS_TOKEN_SECRET'
 });
 
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Route to serve the index.html file
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 // Route to handle video URL submissions
-app.post('/api/download', async (req, res) => {
+app.post('/download', async (req, res) => {
     const { url, platform } = req.body;
 
     try {
@@ -46,21 +58,26 @@ app.post('/api/download', async (req, res) => {
         switch (platform) {
             case 'youtube':
                 // Download video from YouTube
-                const downloadedVideo = await ytdl(url, {
-                    cwd: './downloads/',
-                    dumpSingleJson: true,
+                const youtubeStream = ytdl(url, { quality: 'highest' });
+                fileName = `./downloads/${Date.now()}.mp4`;
+                const youtubeFile = fs.createWriteStream(fileName);
+                youtubeStream.pipe(youtubeFile);
+                await new Promise((resolve, reject) => {
+                    youtubeFile.on('finish', resolve);
+                    youtubeFile.on('error', reject);
                 });
-                fileName = downloadedVideo._filename;
                 break;
-            case 'instagram':
-                // Download video or image from Instagram
-                fileName = await instaDl.download(url, { dest: './downloads/' });
+            case 'instagram_image':
+                // Download image from Instagram
+                const instaImage = await instaDl.download(url);
+                fileName = `./downloads/${Date.now()}.jpg`;
+                fs.writeFileSync(fileName, instaImage);
                 break;
-            case 'facebook':
-                // Download video from Facebook
-                const fbVideoInfo = await fbdl.getInfo(url);
-                const fbVideo = await fbdl.download(fbVideoInfo, './downloads/');
-                fileName = fbVideo.output;
+            case 'instagram_reel':
+                // Download reel from Instagram
+                const instaReel = await instaDl.downloadReel(url);
+                fileName = `./downloads/${Date.now()}.mp4`;
+                fs.writeFileSync(fileName, instaReel);
                 break;
             case 'twitter':
                 // Download video or image from Twitter
@@ -78,8 +95,8 @@ app.post('/api/download', async (req, res) => {
         }
 
         // Insert metadata into MySQL database
-        const sql = 'INSERT INTO videos (url, title, platform, file_name) VALUES (?, ?, ?, ?)';
-        connection.query(sql, [url, fileName, platform], (err, result) => {
+        const sql = 'INSERT INTO videos (url, platform, file_name) VALUES (?, ?, ?)';
+        connection.query(sql, [url, platform, fileName], (err, result) => {
             if (err) {
                 console.error('Error inserting video metadata:', err);
                 res.status(500).json({ error: 'Failed to save video metadata' });
@@ -93,9 +110,6 @@ app.post('/api/download', async (req, res) => {
         res.status(500).json({ error: 'Failed to download or save video' });
     }
 });
-
-// Serve static files (if any)
-app.use(express.static('public'));
 
 // Start the server
 app.listen(PORT, () => {

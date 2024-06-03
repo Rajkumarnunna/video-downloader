@@ -61,17 +61,20 @@
     </nav>
 
     <div class="container mx-auto px-4 mt-8 text-center">
-        <h1 class="text-5xl font-extrabold mb-6">Welcome to Video Downloader by Pavi</h1>
-        <p class="mb-8 text-lg text-gray-200">The ultimate tool to download videos and images from your favorite platforms with ease and speed.</p>
-        <ul class="double-column text-gray-100 text-lg underline-links">
-            <li><a href="youtube-to-mp3.html" class="hover:text-gray-300">YouTube to mp3</a></li>
-            <li><a href="YouTube-to-MP4.html" class="hover:text-gray-300">YouTube MP4</a></li>
-            <li><a href="instagram.html" class="hover:text-gray-300">Instagram</a></li>
-            <li><a href="instagram-reels.html" class="hover:text-gray-300">Instagram Reels</a></li>
-    
-            <li><a href="twitter.html" class="hover:text-gray-300">Twitter</a></li>
-            <li><a href="faq.html" class="hover:text-gray-300">FAQ</a></li>
-        </ul>
+        <h1 class="text-4xl font-bold mb-6">Download Your Favorite Videos</h1>
+        <form action="/download" method="POST" class="bg-white p-6 rounded shadow-md text-gray-900 inline-block">
+            <label for="url" class="block text-left mb-2 font-semibold">Video URL:</label>
+            <input type="text" id="url" name="url" required class="w-full p-2 border border-gray-300 rounded mb-4">
+            <label for="platform" class="block text-left mb-2 font-semibold">Platform:</label>
+            <select id="platform" name="platform" required class="w-full p-2 border border-gray-300 rounded mb-4">
+                <option value="youtube">YouTube</option>
+                <option value="youtube_mp3">YouTube MP3</option>
+                <option value="instagram_image">Instagram Image</option>
+                <option value="instagram_reel">Instagram Reel</option>
+                <option value="twitter">Twitter</option>
+            </select>
+            <button type="submit" class="w-full bg-indigo-700 text-white p-2 rounded">Download</button>
+        </form>
     </div>
 
     <div class="container mx-auto px-4 mt-16 text-center">
@@ -86,20 +89,18 @@
             <p>"I love how simple and fast it is to save Instagram posts using Video Downloader by Pavi. Now I can keep all my favorite memories saved on my phone hassle-free!"</p>
             <cite>- Praveen, Instagram addict</cite>
         </div>
-    
-        
         <div class="testimonial">
             <h3>From a Twitter user:</h3>
             <p>"As a Twitter user, I always wanted to save those hilarious videos and GIFs I come across. Video Downloader by Pavi made it possible! Now I can laugh at them anytime, anywhere."</p>
             <cite>- Prasad, Twitter enthusiast</cite>
         </div>
-    
+    </div>
 
     <footer class="mt-16 bg-indigo-800 text-gray-100 py-6">
         <div class="container mx-auto px-6 flex justify-between items-center">
             <span>© All rights reserved.</span>
             <a href="privacy.html" class="hover:text-gray-300">Privacy Policy</a>
-                <a href="terms.html" class="hover:text-gray-300">Terms of Service</a>
+            <a href="terms.html" class="hover:text-gray-300">Terms of Service</a>
         </div>
     </footer>
 

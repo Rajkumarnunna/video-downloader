@@ -1,5 +1,5 @@
 import requests
-from flask import request, send_file, abort
+from flask import send_file
 import os
 import yt_dlp
 import instaloader
@@ -22,7 +22,6 @@ def download_video(url, platform):
                 video_file = ydl.prepare_filename(info_dict)
             return video_file
         elif platform == 'youtube_mp3':
-            # Use yt_dlp with audio-only format
             ydl_opts = {
                 'format': 'bestaudio',
                 'outtmpl': 'downloaded_audio.%(ext)s',
@@ -32,17 +31,14 @@ def download_video(url, platform):
                 audio_file = ydl.prepare_filename(info_dict)
             return audio_file
         elif platform == 'instagram_image':
-            # Use instaloader to download Instagram images
             loader = instaloader.Instaloader()
-            loader.download_pic(url, target='.')
-            return 'downloaded_image.jpg'  # Assuming the filename is fixed
+            loader.download_pic(url, target='downloaded_image.jpg')
+            return 'downloaded_image.jpg'
         elif platform == 'instagram_reel':
-            # Use instaloader to download Instagram reels
             loader = instaloader.Instaloader()
-            loader.download_reels(url, post_filter=lambda post: post.is_video, target='.')
-            return 'downloaded_reel.mp4'  # Assuming the filename is fixed
+            loader.download_reels(url, post_filter=lambda post: post.is_video, target='downloaded_reel.mp4')
+            return 'downloaded_reel.mp4'
         elif platform == 'twitter':
-            # Use twitter_scraper to download Twitter content
             tweet_id = url.split('/')[-1]
             tweet = tws.get_tweet(tweet_id)
             if 'video_url' in tweet:
